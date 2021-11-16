@@ -60,7 +60,7 @@ const DialogDetail = ({ onClose, open, mode }) => {
 
   const releasePokemon = () => {
     dispatch({
-      type: PokemonContextActions.capturePokemon,
+      type: PokemonContextActions.releasePokemon,
       data: pokemonInfo,
     });
   };

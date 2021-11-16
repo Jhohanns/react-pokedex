@@ -50,6 +50,13 @@ const PokemonDetail = ({ mode }) => {
     });
   };
 
+  const releasePokemon = () => {
+    dispatch({
+      type: PokemonContextActions.releasePokemon,
+      data: pokemonInfo,
+    });
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -104,7 +111,7 @@ const PokemonDetail = ({ mode }) => {
                     aria-label="delete"
                     size="small"
                     onClick={() => {
-                      capturePokemon();
+                      releasePokemon();
                     }}
                   >
                     <img src={releaseIcon} alt="pokemon"></img>

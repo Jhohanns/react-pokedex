@@ -75,6 +75,24 @@ const userReducer = (state, action) => {
         selectedPokemon: mappedPokemon
       };
     }
+    case PokemonContextActions.releasePokemon:{
+      console.log(action);
+      const currentPokemonIndex = state.pokemons.findIndex(
+        (pokemon) => pokemon.id === action.data.id
+      );
+      const newCapturedPokemons = state.capturedPokemons.filter(
+        (pokemon) => pokemon.id !== action.data.id
+      );
+      const mappedPokemon = {...action.data, captured: false};
+
+      state.pokemons.splice(currentPokemonIndex, 1, mappedPokemon);
+      console.log('Pokemon to release ',newCapturedPokemons, state.capturedPokemons);
+      return {
+        ...state,
+        capturedPokemons: newCapturedPokemons,
+        selectedPokemon: mappedPokemon
+      };
+    }
     default:
       return { ...state };
   }
