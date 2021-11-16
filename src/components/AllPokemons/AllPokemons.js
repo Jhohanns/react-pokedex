@@ -1,41 +1,42 @@
-import { useContext, useEffect } from "react";
-import styles from "./AllPokemons.module.scss";
-import { PokemonContext } from "../../context/pokemonContext";
-import { Button, TextField } from "@mui/material";
-import { useState } from "react";
-import PokemonList from "./../PokemonList/PokemonList";
-import PokemonDetail from "../PokemonDetail/PokemonDetail";
-import { Link } from "react-router-dom";
-import Mode from "./../../utils/mode";
+import { useContext, useEffect } from 'react';
+import styles from './AllPokemons.module.scss';
+import { PokemonContext } from '../../context/pokemonContext';
+import { Button, TextField, IconButton, CircularProgress   } from '@mui/material';
+import { useState } from 'react';
+import PokemonList from './../PokemonList/PokemonList';
+import PokemonDetail from '../PokemonDetail/PokemonDetail';
+import { Link } from 'react-router-dom';
+import Mode from './../../utils/mode';
+import homeIcon from './../../assets/Icons/Home.png';
 
 const AllPokemons = () => {
   const {
     state: { pokemons },
   } = useContext(PokemonContext);
 
-  const [pokemonName, setPokemonName] = useState("");
+  const [pokemonName, setPokemonName] = useState('');
   const [filteredPokemons, setFilteredPokemons] = useState([]);
 
   useEffect(() => {
-    console.log("effect");
+    console.log('effect 44');
     setFilteredPokemons(pokemons);
   }, [pokemons]);
 
   const filterPokemons = () => {
-    console.log("filter");
+    console.log('filter');
     pokemonName.trim() &&
       setFilteredPokemons(
-        pokemons.filter((item) => item.name.includes(pokemonName.trim()))
+        pokemons.filter((item) => item.name.includes(pokemonName.trim())),
       );
   };
 
   const clearFilter = () => {
-    console.log("clear");
+    console.log('clear');
     setFilteredPokemons(pokemons);
   };
 
   const inputChanged = (e) => {
-    console.log("change");
+    console.log('change');
     const name = e.target.value;
     if (!name) {
       clearFilter();
@@ -63,16 +64,26 @@ const AllPokemons = () => {
           SEARCH
         </Button>
         <Link to="/captured-pokemons" replace>
-          SEARCH
+          <IconButton aria-label="delete" className={styles.home} size="small">
+            <img src={homeIcon} alt="pokemon"></img>
+          </IconButton>
         </Link>
       </div>
       <div className={styles.content}>
-        <div className={styles.list}>
-          <PokemonList pokemons={filteredPokemons} />
-        </div>
-        <div className={styles.detail}>
-          <PokemonDetail mode={Mode.pokemons} />
-        </div>
+        {!pokemons.length ? (
+          <div className={styles.spinner}>
+          <CircularProgress />
+          </div>
+        ) : (
+          <>
+            <div className={styles.list}>
+              <PokemonList pokemons={filteredPokemons} />
+            </div>
+            <div className={styles.detail}>
+              <PokemonDetail mode={Mode.pokemons} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

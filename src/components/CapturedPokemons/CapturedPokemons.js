@@ -1,43 +1,42 @@
-import { useContext, useEffect } from "react";
-import styles from "./CapturedPokemons.module.scss";
-import {
-  PokemonContext,
-  PokemonContextActions,
-} from "../../context/pokemonContext";
-import { Button, TextField } from "@mui/material";
-import { useState } from "react";
-import PokemonList from "./../PokemonList/PokemonList";
-import PokemonDetail from "../PokemonDetail/PokemonDetail";
+import { useContext, useEffect } from 'react';
+import styles from './CapturedPokemons.module.scss';
+import { PokemonContext } from '../../context/pokemonContext';
+import { Button, TextField, IconButton, CircularProgress } from '@mui/material';
+import { useState } from 'react';
+import PokemonList from './../PokemonList/PokemonList';
+import PokemonDetail from '../PokemonDetail/PokemonDetail';
 import Mode from './../../utils/mode';
+import { Link } from 'react-router-dom';
+import homeIcon from './../../assets/Icons/Home.png';
 
 const CapturedPokemons = () => {
   const {
     state: { capturedPokemons },
   } = useContext(PokemonContext);
 
-  const [pokemonName, setPokemonName] = useState("");
+  const [pokemonName, setPokemonName] = useState('');
   const [filteredCapturedPokemons, setFilteredCapturedPokemons] = useState([]);
 
   useEffect(() => {
-    console.log("effect");
+    console.log('effect');
     setFilteredCapturedPokemons(capturedPokemons);
   }, [capturedPokemons]);
 
   const filterPokemons = () => {
-    console.log("filter");
+    console.log('filter');
     pokemonName &&
-    setFilteredCapturedPokemons(
-        capturedPokemons.filter((item) => item.name.includes(pokemonName))
+      setFilteredCapturedPokemons(
+        capturedPokemons.filter((item) => item.name.includes(pokemonName)),
       );
   };
 
   const clearFilter = () => {
-    console.log("clear");
+    console.log('clear');
     setFilteredCapturedPokemons(capturedPokemons);
   };
 
   const inputChanged = (e) => {
-    console.log("change");
+    console.log('change');
     const name = e.target.value;
     if (!name) {
       clearFilter();
@@ -64,14 +63,29 @@ const CapturedPokemons = () => {
         >
           SEARCH
         </Button>
+        <Link to="/pokemons" replace>
+          <IconButton aria-label="delete" className={styles.home} size="small">
+            <img src={homeIcon} alt="pokemon"></img>
+          </IconButton>
+        </Link>
       </div>
       <div className={styles.content}>
-        <div className={styles.list}>
-          <PokemonList pokemons={filteredCapturedPokemons} />
-        </div>
-        <div className={styles.detail}>
-          <PokemonDetail mode={Mode.capturedPokemons} />
-        </div>
+        {!capturedPokemons.length ? (
+          <div className={styles.spinner}>
+            <CircularProgress />
+
+            Looks empty here
+          </div>
+        ) : (
+          <>
+            <div className={styles.list}>
+              <PokemonList pokemons={filteredCapturedPokemons} />
+            </div>
+            <div className={styles.detail}>
+              <PokemonDetail mode={Mode.capturedPokemons} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import PokemonContextActions from './../../context/pokemonContext/actions';
 import Mode from '../../utils/mode';
+import DialogDetail from './../DialogDetail/DialogDetail';
 
 const PokemonDetail = ({ mode }) => {
   const {
@@ -18,6 +19,7 @@ const PokemonDetail = ({ mode }) => {
     dispatch,
   } = useContext(PokemonContext);
   const [pokemonInfo, setPokemonInfo] = useState({});
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setPokemonInfo(selectedPokemon);
@@ -46,6 +48,14 @@ const PokemonDetail = ({ mode }) => {
       type: PokemonContextActions.capturePokemon,
       data: pokemonInfo,
     });
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
   };
 
   return (
@@ -88,7 +98,7 @@ const PokemonDetail = ({ mode }) => {
 
           <div className={styles.actionsContainer}>
             <div className={styles.btnContainer}>
-              {(pokemonInfo?.captured || (mode === Mode.capturedPokemons)) ? (
+              {pokemonInfo?.captured || mode === Mode.capturedPokemons ? (
                 <>
                   <IconButton
                     aria-label="delete"
@@ -116,13 +126,14 @@ const PokemonDetail = ({ mode }) => {
                 </>
               )}
             </div>
-            <div className={styles.btnContainer}>
+            <div className={styles.btnContainer} onClick={handleClickOpen}>
               <IconButton aria-label="delete" size="small">
                 <img src={detailsIcon} alt="pokemon"></img>
               </IconButton>
               <span>DETAILS</span>
             </div>
           </div>
+          <DialogDetail open={open} onClose={handleClose} />
         </div>
       )}
     </>

@@ -1,0 +1,52 @@
+.container {
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .title{
+      font-weight: 700;
+      text-transform: capitalize;
+      font-size: 30px;
+  }
+
+  .pokemonImage{
+      width: 350px;
+      filter: drop-shadow(5px 5px 5px #222);
+  }
+}
+
+.actionsContainer{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: 80px;
+    }
+    span{
+        letter-spacing: 2px;
+        font-weight: 500;
+    }
+}
+
+.empty{
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.titleContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+}
+
