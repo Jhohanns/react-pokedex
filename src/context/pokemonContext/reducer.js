@@ -86,7 +86,6 @@ const userReducer = (state, action) => {
       const mappedPokemon = {...action.data, captured: false};
 
       state.pokemons.splice(currentPokemonIndex, 1, mappedPokemon);
-      console.log('Pokemon to release ',newCapturedPokemons, state.capturedPokemons);
       return {
         ...state,
         capturedPokemons: newCapturedPokemons,
