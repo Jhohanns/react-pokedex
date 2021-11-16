@@ -1,0 +1,53 @@
+.one{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    margin: 10px 10px 0 10px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(41,1,40,1) 0%, rgba(2,105,133,1) 54%, rgba(130,3,122,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#290128', endColorstr='#82037a', GradientType=1 );
+    box-shadow: 4px 4px 12px -4px rgba(0,0,0,0.44);
+    cursor: pointer;
+    position: relative;
+    img{
+        position: absolute;
+        z-index: 0;
+        height: 210%;
+        right: -50px;
+        filter: drop-shadow(5px 5px 5px #222);
+    }
+    .info{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        z-index: 99;
+        padding-left: 9px;
+        color: white;
+        text-transform: capitalize;
+    }
+}
+
+.list{
+    overflow:auto;
+}
+
+.two{
+    background-color: #fc6c6d;
+}
+
+.three{
+    background-color: #00a8f7;
+}
+
+.captured{
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    align-items: center;
+    width: 90px;
+    background-color: crimson;
+    color: white;
+    font-weight: 700;
+}
