@@ -23,7 +23,6 @@ const DialogDetail = ({ onClose, open, mode }) => {
   useEffect(() => {
     setPokemonInfo(selectedPokemon);
     return () => {
-      console.log('RETURNNNNNNNNNN');
       setPokemonInfo({});
     };
   }, [selectedPokemon]);

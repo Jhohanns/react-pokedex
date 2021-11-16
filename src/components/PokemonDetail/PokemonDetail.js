@@ -24,7 +24,6 @@ const PokemonDetail = ({ mode }) => {
   useEffect(() => {
     setPokemonInfo(selectedPokemon);
     return () => {
-      console.log('RETURNNNNNNNNNN');
       setPokemonInfo({});
     };
   }, [selectedPokemon]);

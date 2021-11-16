@@ -18,12 +18,10 @@ const CapturedPokemons = () => {
   const [filteredCapturedPokemons, setFilteredCapturedPokemons] = useState([]);
 
   useEffect(() => {
-    console.log('effect');
     setFilteredCapturedPokemons(capturedPokemons);
   }, [capturedPokemons]);
 
   const filterPokemons = () => {
-    console.log('filter');
     pokemonName &&
       setFilteredCapturedPokemons(
         capturedPokemons.filter((item) => item.name.includes(pokemonName)),
@@ -31,12 +29,10 @@ const CapturedPokemons = () => {
   };
 
   const clearFilter = () => {
-    console.log('clear');
     setFilteredCapturedPokemons(capturedPokemons);
   };
 
   const inputChanged = (e) => {
-    console.log('change');
     const name = e.target.value;
     if (!name) {
       clearFilter();

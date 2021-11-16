@@ -18,12 +18,10 @@ const AllPokemons = () => {
   const [filteredPokemons, setFilteredPokemons] = useState([]);
 
   useEffect(() => {
-    console.log('effect 44');
     setFilteredPokemons(pokemons);
   }, [pokemons]);
 
   const filterPokemons = () => {
-    console.log('filter');
     pokemonName.trim() &&
       setFilteredPokemons(
         pokemons.filter((item) => item.name.includes(pokemonName.trim())),
@@ -31,12 +29,10 @@ const AllPokemons = () => {
   };
 
   const clearFilter = () => {
-    console.log('clear');
     setFilteredPokemons(pokemons);
   };
 
   const inputChanged = (e) => {
-    console.log('change');
     const name = e.target.value;
     if (!name) {
       clearFilter();

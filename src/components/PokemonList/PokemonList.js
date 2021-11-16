@@ -7,7 +7,6 @@ const PokemonList = ({ pokemons }) => {
   const { dispatch } = useContext(PokemonContext);
 
   useEffect(() => {
-    console.log('LIST REFRESSSS');
     selectPokemon({});
   }, []);
 

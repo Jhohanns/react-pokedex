@@ -24,12 +24,4 @@ export async function getPokemonsFirstPage() {
     } catch (error) {
         return error;
     }
-
-
-
-    // console.log("realessssss ", resultados);
-    //   dispatch({
-    //     type: PokemonContextActions.setPokemons,
-    //     data: results,
-    //   });
 };
