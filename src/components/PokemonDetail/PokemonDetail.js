@@ -133,7 +133,7 @@ const PokemonDetail = ({ mode }) => {
               <span>DETAILS</span>
             </div>
           </div>
-          <DialogDetail open={open} onClose={handleClose} />
+          <DialogDetail open={open} onClose={handleClose} mode />
         </div>
       )}
     </>
